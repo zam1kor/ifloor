@@ -22,10 +22,12 @@ GREEN = {"r": 0, "g": 100, "b": 0}
 BLUE = {"r": 0, "g": 0, "b": 100}
 YELLOW = {"r": 100, "g": 100, "b": 0}
 WHITE = {"r": 100, "g": 100, "b": 100}
+PURPLE = {"r":80, "g":0 , "b":80}
+BLACK = {"r":0, "g":0 , "b":0}
 
+list_of_colors = [RED, GREEN, BLUE, YELLOW, PURPLE]
 
 _logger = logging.getLogger(__name__)
-
 
 def main():
     logging.basicConfig(level=logging.INFO)
@@ -41,20 +43,21 @@ def main():
     # Issue commands to intelligent floor.
     # Important!! Use keyword arguments!!!
 
-    # draw line from (row1/col1) to (row2/col2)
-    ifloor.AssetControl.DrawLine(
-        row1=6, col1=12, row2=18, col2=12, color=YELLOW, layer=0)
-    ifloor.AssetControl.DrawLine(
-        row1=12, col1=6, row2=12, col2=16, color=RED, layer=0)
+    for col in range(12, 20):
+        for row in range(11, 19): 
+            for color in list_of_colors:
+            # draw rectangle
+                ifloor.AssetControl.DrawRectangle(
+                row1=row, col1=row, row2=col, col2=col, color=color, fill=False, layer=0)
+                time.sleep(0.25)
 
-    # draw rectangle
-    ifloor.AssetControl.DrawRectangle(
-        row1=5, col1=5, row2=17, col2=17, color=BLUE, fill=True, layer=0)
-
-    # clear Layer after 10 secs
-    
-    # time.sleep(20)
-    ifloor.AssetControl.ClearLayer(layer=0)
+    for col in range(20, 12):
+        for row in range(19, 11): 
+            for color in list_of_colors:
+            # draw rectangle
+                ifloor.AssetControl.DrawRectangle(
+                row1=row, col1=row, row2=col, col2=col, color=color, fill=False, layer=0)
+                time.sleep(0.25)
 
     _logger.info("good bye")
     mgr.disconnect()

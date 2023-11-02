@@ -1,0 +1,19 @@
+Program JetRacer through a Webbrowser
+
+1) PC and JetRacer car should be on the same network 
+
+(02.11.2023)
+
+Ethernet IP of JetRacer: 10.163.30.214
+WLAN IP of JetRacer: 10.163.30.216
+
+2) In Browser: "http://<jetson_ip_address>:8888"
+	--> Make sure you are in the same network for this to work.
+
+3) Install packages on jetracer: JetCam, torch2trt, JetRacer
+	--> Links: https://github.com/NVIDIA-AI-IOT/jetracer
+		   https://github.com/NVIDIA-AI-IOT/jetcam
+	           https://github.com/NVIDIA-AI-IOT/torch2trt
+
+3.1) Setup "5W" mode in Jetson 
+	--> Open terminal --> Use command: "sudo nvpmodel -m1"
